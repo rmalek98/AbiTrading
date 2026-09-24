@@ -1,0 +1,29 @@
+Options -Indexes
+DirectoryIndex index.html
+
+# Force HTTPS and the bare domain
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://abitrading.net%{REQUEST_URI} [L,R=301]
+
+# Old WordPress URLs -> new pages (301 keeps existing rankings). Case-insensitive.
+RewriteRule ^about/?$ /a-propos/ [R=301,L,NC]
+RewriteRule ^cloud-computing/?$ /microsoft-365-maroc/ [R=301,L,NC]
+RewriteRule ^products/?$ /materiel-informatique-logiciels/ [R=301,L,NC]
+RewriteRule ^product-2/?$ /materiel-informatique-logiciels/ [R=301,L,NC]
+RewriteRule ^projects/?$ / [R=301,L,NC]
+RewriteRule ^(feed|comments/feed)/?$ / [R=301,L]
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.(css|js|svg|png|jpg|webp|woff2)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml
+</IfModule>
