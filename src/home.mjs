@@ -5,23 +5,21 @@ export const clients = ['Publicis Groupe', 'Starcom', 'Leo Burnett', 'Magna', 'I
 export const finder = {
   fr: {
     eyebrow: 'Simulateur',
-    title: 'Quel plan Microsoft 365 pour votre équipe ?',
-    lead: 'Répondez en 10 secondes, nous vous recommandons un point de départ. Le devis final est confirmé avec vous.',
-    users: 'Nombre d’utilisateurs', need: 'Votre priorité',
-    needs: [['mail', 'Email pro + Teams'], ['office', 'Applications Office installées'], ['secure', 'Sécurité & appareils']],
-    plans: { mail: 'Business Basic', office: 'Business Standard', secure: 'Business Premium' },
-    why: { mail: 'Email professionnel, Teams et OneDrive. Idéal pour démarrer vite.', office: 'Ajoute Word, Excel, PowerPoint et Outlook installés sur les postes.', secure: 'Ajoute la protection avancée et la gestion des appareils.' },
-    result: 'Notre recommandation', cta: 'Obtenir mon devis', for: 'pour', usersWord: 'utilisateurs'
+    title: 'Quel abonnement Microsoft 365 cloud pour votre équipe ?',
+    lead: 'Choisissez votre nombre d’utilisateurs et votre besoin : nous vous recommandons l’offre adaptée. Tout est 100 % cloud, rien à installer.',
+    users: 'Nombre d’utilisateurs', need: 'Votre besoin',
+    needs: [['mail', 'Email professionnel uniquement'], ['collab', 'Email + Teams + Office en ligne']],
+    why: { exchange: 'Messagerie pro 50 Go sur votre domaine, Outlook web et mobile.', basic: 'Email, Teams, Office en ligne et 1 To OneDrive par utilisateur.', e1: 'Au-delà de 300 utilisateurs : Office en ligne, email et OneDrive sans limite d’utilisateurs.' },
+    result: 'Notre recommandation', cta: 'Obtenir mon devis', estimate: 'Estimation :', perMonth: 'DH HT / mois'
   },
   en: {
     eyebrow: 'Planner',
-    title: 'Which Microsoft 365 plan fits your team?',
-    lead: 'Answer in 10 seconds and we will suggest a starting point. The final quote is confirmed with you.',
-    users: 'Number of users', need: 'Your priority',
-    needs: [['mail', 'Business email + Teams'], ['office', 'Installed Office apps'], ['secure', 'Security & devices']],
-    plans: { mail: 'Business Basic', office: 'Business Standard', secure: 'Business Premium' },
-    why: { mail: 'Business email, Teams and OneDrive. The fastest way to get started.', office: 'Adds Word, Excel, PowerPoint and Outlook installed on your devices.', secure: 'Adds advanced protection and device management.' },
-    result: 'Our recommendation', cta: 'Get my quote', for: 'for', usersWord: 'users'
+    title: 'Which Microsoft 365 cloud plan fits your team?',
+    lead: 'Pick your number of users and your need, and we recommend the right plan. Everything is 100% cloud, nothing to install.',
+    users: 'Number of users', need: 'Your need',
+    needs: [['mail', 'Business email only'], ['collab', 'Email + Teams + Office Online']],
+    why: { exchange: '50 GB business email on your domain, Outlook web and mobile.', basic: 'Email, Teams, Office Online and 1 TB OneDrive per user.', e1: 'Beyond 300 users: Office Online, email and OneDrive with no user cap.' },
+    result: 'Our recommendation', cta: 'Get my quote', estimate: 'Estimate:', perMonth: 'MAD excl. VAT / month'
   }
 };
 
@@ -55,15 +53,15 @@ export const home = {
     fr: [
       { type: 'partners' },
       { type: 'bento', eyebrow: 'Nos expertises', title: 'Tout ce dont votre entreprise a besoin, chez un seul partenaire', items: [
-        { t: 'Microsoft 365 & Office', d: 'Licences, migration de messagerie, Teams, SharePoint et sécurité. Nous déployons et nous formons vos équipes.', to: 'microsoft', big: true, tag: 'Partenaire CSP' },
+        { t: 'Microsoft 365 & Office', d: 'Email Exchange, Teams et Office en ligne, 100 % cloud. Nous migrons votre messagerie et formons vos équipes.', to: 'microsoft', big: true, tag: 'Partenaire CSP' },
         { t: 'Cloud & Azure', d: 'Serveurs, sauvegarde et continuité d’activité dans le cloud.', to: 'azure' },
         { t: 'Infogérance IT', d: 'Support, réseau, antivirus, sauvegardes : tout est surveillé.', to: 'managed' },
         { t: 'Web sur mesure', d: 'Sites, e-commerce, SaaS et SEO pour développer vos ventes.', to: 'custom', wide: true },
         { t: 'Matériel & logiciels', d: 'Serveurs, réseau, postes et licences, fournis et installés.', to: 'products', full: true }
       ]},
       { type: 'finder' },
-      { type: 'stats' },
       { type: 'clients' },
+      { type: 'stats' },
       { type: 'steps', title: 'Un projet mené sans mauvaise surprise', items: [
         { t: 'Audit gratuit', d: 'Nous analysons votre messagerie, vos postes, vos serveurs et vos usages.' },
         { t: 'Proposition claire', d: 'Un devis détaillé, sans jargon, avec calendrier et coûts mensuels.' },
@@ -75,15 +73,15 @@ export const home = {
     en: [
       { type: 'partners' },
       { type: 'bento', eyebrow: 'Our expertise', title: 'Everything your business needs, from a single partner', items: [
-        { t: 'Microsoft 365 & Office', d: 'Licences, mail migration, Teams, SharePoint and security. We deploy and we train your team.', to: 'microsoft', big: true, tag: 'CSP partner' },
+        { t: 'Microsoft 365 & Office', d: 'Exchange email, Teams and Office Online, 100% cloud. We migrate your mail and train your team.', to: 'microsoft', big: true, tag: 'CSP partner' },
         { t: 'Cloud & Azure', d: 'Servers, backup and business continuity in the cloud.', to: 'azure' },
         { t: 'Managed IT', d: 'Support, network, antivirus and backups: all monitored.', to: 'managed' },
         { t: 'Custom web', d: 'Websites, e-commerce, SaaS and SEO to grow your sales.', to: 'custom', wide: true },
         { t: 'Hardware & software', d: 'Servers, networking, devices and licences, supplied and installed.', to: 'products', full: true }
       ]},
       { type: 'finder' },
-      { type: 'stats' },
       { type: 'clients' },
+      { type: 'stats' },
       { type: 'steps', title: 'A project run without unpleasant surprises', items: [
         { t: 'Free audit', d: 'We review your mail, devices, servers and how your team works.' },
         { t: 'Clear proposal', d: 'A detailed, jargon-free quote with timeline and monthly costs.' },

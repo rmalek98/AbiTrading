@@ -40,34 +40,30 @@ export const pages = {
   microsoft: {
     slug: { fr: 'microsoft-365-maroc', en: 'microsoft-365-morocco' },
     title: {
-      fr: 'Microsoft 365 & Licences Office au Maroc | AbiTrading',
-      en: 'Microsoft 365 & Office Licences in Morocco | AbiTrading'
+      fr: 'Microsoft 365 Cloud au Maroc : Exchange, Teams, Office en ligne | AbiTrading',
+      en: 'Microsoft 365 Cloud in Morocco: Exchange, Teams, Office Online | AbiTrading'
     },
     desc: {
-      fr: 'Achetez et déployez Microsoft 365 (Office, Exchange, Teams, SharePoint) au Maroc avec un partenaire CSP : licences, migration de messagerie, sécurité et support.',
-      en: 'Buy and deploy Microsoft 365 (Office, Exchange, Teams, SharePoint) in Morocco with a CSP partner: licences, mail migration, security and support.'
+      fr: 'Abonnements Microsoft 365 100 % cloud au Maroc : Exchange Online, Business Basic, Office 365 E1. Email pro, Teams, Office en ligne, migration et support par un partenaire CSP.',
+      en: '100% cloud Microsoft 365 subscriptions in Morocco: Exchange Online, Business Basic, Office 365 E1. Business email, Teams, Office Online, migration and support from a CSP partner.'
     },
-    h1: { fr: 'Microsoft 365 au Maroc : licences, migration et support', en: 'Microsoft 365 in Morocco: licences, migration and support' },
+    h1: { fr: 'Microsoft 365 cloud au Maroc : email, Teams et Office en ligne', en: 'Microsoft 365 cloud in Morocco: email, Teams and Office Online' },
     lead: {
-      fr: 'En tant que partenaire Microsoft CSP, nous vous fournissons vos licences Microsoft 365 et Office, configurons votre tenant et migrons votre messagerie sans interruption.',
-      en: 'As a Microsoft CSP partner, we supply your Microsoft 365 and Office licences, set up your tenant and migrate your mail with no downtime.'
+      fr: 'Partenaire Microsoft CSP, nous fournissons vos abonnements Microsoft 365 100 % cloud : rien à installer, tout fonctionne dans le navigateur et sur mobile. Nous configurons votre tenant et migrons votre messagerie sans interruption.',
+      en: 'As a Microsoft CSP partner, we supply 100% cloud Microsoft 365 subscriptions: nothing to install, everything runs in the browser and on mobile. We set up your tenant and migrate your mail with no downtime.'
     },
-    service: { fr: 'Licences et déploiement Microsoft 365', en: 'Microsoft 365 licensing and deployment' },
+    service: { fr: 'Abonnements Microsoft 365 cloud et migration', en: 'Microsoft 365 cloud subscriptions and migration' },
     blocks: {
       fr: [
         { type: 'cards', title: 'Ce qui est inclus', items: [
-          { t: 'Applications Office', d: 'Word, Excel, PowerPoint et Outlook sur PC, Mac et mobile, toujours à jour.' },
+          { t: 'Office en ligne', d: 'Word, Excel et PowerPoint dans le navigateur et sur mobile, toujours à jour, rien à installer.' },
           { t: 'Email professionnel Exchange', d: 'Adresse @votre-domaine, boîte de 50 Go ou plus selon le plan, anti-spam intégré.' },
           { t: 'Teams', d: 'Messagerie d’équipe, visioconférence et appels, au même endroit que vos fichiers.' },
           { t: 'OneDrive & SharePoint', d: 'Stockage cloud et partage sécurisé de documents avec contrôle des accès.' },
-          { t: 'Sécurité & conformité', d: 'Authentification multifacteur, protection des appareils et des données.' },
-          { t: 'Facturation simplifiée', d: 'Abonnement mensuel ou annuel, ajout ou retrait d’utilisateurs à tout moment.' }
+          { t: 'Sécurité & conformité', d: 'Authentification multifacteur, anti-spam, anti-malware et données hébergées dans les centres Microsoft.' },
+          { t: 'Facturation en dirhams', d: 'Une facture locale, un interlocuteur au Maroc, des utilisateurs ajoutés selon vos besoins.' }
         ]},
-        { type: 'plans', title: 'Quel plan choisir ?', items: [
-          { t: 'Business Basic', d: 'Email, Teams, OneDrive et versions web des applications Office.' },
-          { t: 'Business Standard', d: 'Tout Basic, plus les applications Office installées sur vos postes.', hot: true },
-          { t: 'Business Premium', d: 'Tout Standard, plus sécurité avancée et gestion des appareils.' }
-        ], note: 'Les plans et prix évoluent : demandez-nous un devis à jour pour votre nombre d’utilisateurs.' },
+        { type: 'pricing' },
         { type: 'steps', title: 'Notre méthode de migration', items: [
           { t: 'Inventaire', d: 'Boîtes mail, domaines, fichiers partagés et postes concernés.' },
           { t: 'Configuration', d: 'Tenant, domaine, comptes, MFA et politiques de sécurité.' },
@@ -75,7 +71,10 @@ export const pages = {
           { t: 'Formation', d: 'Prise en main de Outlook, Teams et OneDrive par vos équipes.' }
         ]},
         { type: 'faq', items: [
-          { q: 'Office 365 et Microsoft 365, quelle différence ?', a: 'Microsoft 365 est le nom actuel de l’offre. Il regroupe les applications Office, la messagerie, Teams, le stockage cloud et la sécurité dans un seul abonnement.' },
+          { q: 'Office 365 et Microsoft 365, quelle différence ?', a: 'Microsoft 365 est le nom actuel de l’offre. Il regroupe la messagerie, Teams, Office en ligne, le stockage cloud et la sécurité dans un seul abonnement.' },
+          { q: 'Faut-il installer Office sur nos ordinateurs ?', a: 'Non. Nos offres sont 100 % cloud : Word, Excel, PowerPoint et Outlook s’utilisent dans le navigateur et via les applications mobiles. Aucune installation ni licence poste n’est nécessaire.' },
+          { q: 'Faut-il une connexion internet ?', a: 'Oui, les applications en ligne fonctionnent via internet. Les emails et fichiers récents restent consultables sur mobile, et tout se synchronise dès le retour de la connexion.' },
+          { q: 'Pourquoi passer par AbiTrading plutôt que directement par Microsoft ?', a: 'Vous obtenez les mêmes abonnements officiels, avec en plus une facture en dirhams, la configuration de votre domaine, la migration de vos emails et un support local en français et en arabe.' },
           { q: 'Pouvons-nous garder notre adresse email actuelle ?', a: 'Oui. Nous connectons votre nom de domaine existant à Microsoft 365, vos adresses restent identiques.' },
           { q: 'Combien de temps dure une migration ?', a: 'Pour une PME, de quelques jours à deux semaines selon le volume de données. Nous planifions le basculement pour éviter toute interruption.' },
           { q: 'Proposez-vous un support après la migration ?', a: 'Oui, via nos contrats d’infogérance ou à l’intervention, pour vos utilisateurs et vos administrateurs.' }
@@ -84,18 +83,14 @@ export const pages = {
       ],
       en: [
         { type: 'cards', title: 'What is included', items: [
-          { t: 'Office apps', d: 'Word, Excel, PowerPoint and Outlook on PC, Mac and mobile, always up to date.' },
+          { t: 'Office Online', d: 'Word, Excel and PowerPoint in the browser and on mobile, always up to date, nothing to install.' },
           { t: 'Exchange business email', d: 'An address on your own domain, 50 GB or more mailboxes depending on plan, built-in spam filtering.' },
           { t: 'Teams', d: 'Team chat, video meetings and calls, next to your files.' },
           { t: 'OneDrive & SharePoint', d: 'Cloud storage and secure document sharing with access control.' },
-          { t: 'Security & compliance', d: 'Multi-factor authentication, device and data protection.' },
-          { t: 'Simple billing', d: 'Monthly or annual subscription, add or remove users any time.' }
+          { t: 'Security & compliance', d: 'Multi-factor authentication, anti-spam, anti-malware and data hosted in Microsoft datacentres.' },
+          { t: 'Billing in dirhams', d: 'A local invoice, a contact in Morocco, and users added as you need them.' }
         ]},
-        { type: 'plans', title: 'Which plan should you pick?', items: [
-          { t: 'Business Basic', d: 'Email, Teams, OneDrive and web versions of Office apps.' },
-          { t: 'Business Standard', d: 'Everything in Basic, plus desktop Office apps installed on your devices.', hot: true },
-          { t: 'Business Premium', d: 'Everything in Standard, plus advanced security and device management.' }
-        ], note: 'Plans and prices change: ask us for an up-to-date quote for your number of users.' },
+        { type: 'pricing' },
         { type: 'steps', title: 'Our migration method', items: [
           { t: 'Inventory', d: 'Mailboxes, domains, shared files and devices involved.' },
           { t: 'Configuration', d: 'Tenant, domain, accounts, MFA and security policies.' },
@@ -103,7 +98,10 @@ export const pages = {
           { t: 'Training', d: 'Your team gets up to speed on Outlook, Teams and OneDrive.' }
         ]},
         { type: 'faq', items: [
-          { q: 'Office 365 vs Microsoft 365: what is the difference?', a: 'Microsoft 365 is the current name of the offer. It bundles Office apps, email, Teams, cloud storage and security in one subscription.' },
+          { q: 'Office 365 vs Microsoft 365: what is the difference?', a: 'Microsoft 365 is the current name of the offer. It bundles email, Teams, Office Online, cloud storage and security in one subscription.' },
+          { q: 'Do we need to install Office on our computers?', a: 'No. Our plans are 100% cloud: Word, Excel, PowerPoint and Outlook run in the browser and in the mobile apps. No installation or device licence is needed.' },
+          { q: 'Do we need an internet connection?', a: 'Yes, the online apps run over the internet. Recent emails and files stay available on mobile, and everything syncs as soon as you are back online.' },
+          { q: 'Why buy through AbiTrading instead of directly from Microsoft?', a: 'You get the same official subscriptions, plus an invoice in dirhams, domain setup, email migration and local support in French, Arabic and English.' },
           { q: 'Can we keep our current email address?', a: 'Yes. We connect your existing domain to Microsoft 365, so your addresses stay the same.' },
           { q: 'How long does a migration take?', a: 'For an SME, from a few days to two weeks depending on data volume. We schedule the cut-over to avoid any interruption.' },
           { q: 'Do you provide support after migration?', a: 'Yes, through our managed IT contracts or on demand, for both users and administrators.' }
@@ -270,8 +268,8 @@ export const pages = {
       en: 'Business IT Hardware & Software in Morocco | AbiTrading'
     },
     desc: {
-      fr: 'Serveurs, réseau, stockage, imprimantes, licences Microsoft et antivirus pour entreprises au Maroc. Fourniture, installation et garantie.',
-      en: 'Servers, networking, storage, printers, Microsoft licences and antivirus for businesses in Morocco. Supply, installation and warranty.'
+      fr: 'Serveurs, réseau, stockage, imprimantes, Microsoft 365 cloud et antivirus pour entreprises au Maroc. Fourniture, installation et garantie.',
+      en: 'Servers, networking, storage, printers, Microsoft 365 cloud and antivirus for businesses in Morocco. Supply, installation and warranty.'
     },
     h1: { fr: 'Matériel informatique et logiciels pour entreprises', en: 'Business IT hardware and software' },
     lead: {
@@ -286,7 +284,7 @@ export const pages = {
           { t: 'Réseau', d: 'Routeurs, commutateurs, pare-feu et bornes Wi-Fi professionnels.' },
           { t: 'Stockage', d: 'NAS et baies de stockage avec sauvegarde intégrée.' },
           { t: 'Imprimantes', d: 'Imprimantes et multifonctions pour bureaux et ateliers.' },
-          { t: 'Licences Microsoft', d: 'Windows, Office, Microsoft 365, serveurs et outils métiers.' },
+          { t: 'Microsoft 365 cloud', d: 'Email Exchange, Teams et Office en ligne en abonnement, voir nos offres cloud.' },
           { t: 'Antivirus', d: 'Solutions de protection pour postes, serveurs et messagerie.' }
         ]},
         { type: 'cta', t: 'Besoin d’un chiffrage ?', d: 'Envoyez votre liste de besoins, nous revenons avec un devis comparatif.' }
@@ -297,7 +295,7 @@ export const pages = {
           { t: 'Networking', d: 'Professional routers, switches, firewalls and Wi-Fi access points.' },
           { t: 'Storage', d: 'NAS and storage arrays with built-in backup.' },
           { t: 'Printers', d: 'Printers and multifunction devices for offices and workshops.' },
-          { t: 'Microsoft licences', d: 'Windows, Office, Microsoft 365, server and business tools.' },
+          { t: 'Microsoft 365 cloud', d: 'Exchange email, Teams and Office Online by subscription, see our cloud plans.' },
           { t: 'Antivirus', d: 'Protection for devices, servers and email.' }
         ]},
         { type: 'cta', t: 'Need a quote?', d: 'Send us your requirements and we will come back with a comparative quote.' }

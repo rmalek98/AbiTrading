@@ -2,6 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync } from 'node:fs';
 import { ui, nav, pages } from './src/content.mjs';
 import { partners, clients, finder } from './src/home.mjs';
+import { m365Plans, m365Ui } from './src/m365.mjs';
 
 const cfg = JSON.parse(readFileSync('site.config.json', 'utf8'));
 const OUT = 'dist';
@@ -96,6 +97,8 @@ function renderBlock(b, lang, u) {
       return `<section class="section alt"><div class="wrap narrow"><div class="head-s rv"><h2>${u.faq}</h2></div><div x-data="{open:0}">${b.items.map((i, n) => `<div class="faq" :class="{on: open === ${n}}"><button type="button" @click="open = open === ${n} ? null : ${n}" :aria-expanded="open === ${n}"><span>${esc(i.q)}</span><i aria-hidden="true"></i></button><div class="ans" x-show="open === ${n}" x-collapse><p>${esc(i.a)}</p></div></div>`).join('')}</div></div></section>`;
     case 'finder':
       return renderFinder(lang);
+    case 'pricing':
+      return renderPricing(lang);
     case 'cta':
       return `<section class="cta"><div class="wrap cta-in">${markSvg('cta-mark')}<div><h2>${esc(b.t)}</h2><p>${esc(b.d)}</p><a class="btn" href="${path(lang, 'contact')}">${u.quote} ${icon('arrow', 18)}</a></div></div></section>`;
     case 'form':
@@ -104,17 +107,41 @@ function renderBlock(b, lang, u) {
   return '';
 }
 
+const price = (id) => (cfg.m365Prices || {})[id] || null;
+const loc = (lang) => (lang === 'fr' ? 'fr-FR' : 'en-US');
+const fmt = (n, lang) => Number(n).toLocaleString(loc(lang), { maximumFractionDigits: 2 });
+
+function renderPricing(lang) {
+  const m = m365Ui[lang];
+  return `<section class="section" id="offres"><div class="wrap"><div class="head-s rv"><p class="eyebrow">${m.cloud}</p><h2>${m.title}</h2></div>
+<div class="pricing">${m365Plans.map((p, n) => {
+    const pr = price(p.id);
+    return `<article class="price-card rv${p.hot ? ' hot' : ''}" style="--i:${n}">
+<span class="tag">${esc(p.tag[lang])}</span><h3>${esc(p.name)}</h3><p class="best">${esc(p.best[lang])}</p>
+<p class="amount">${pr ? `<strong>${fmt(pr, lang)}</strong><span>${m.perUser}</span>` : `<strong class="quote">${m.onQuote}</strong>`}</p>
+<ul>${p.features[lang].map((f) => `<li>${icon('check', 18)}${esc(f)}</li>`).join('')}</ul>
+<a class="btn${p.hot ? '' : ' line'}" href="${path(lang, 'contact')}?plan=${encodeURIComponent(p.name)}">${m.choose} ${icon('arrow', 18)}</a>
+</article>`;
+  }).join('')}</div><p class="note">${m.note}</p></div></section>`;
+}
+
 function renderFinder(lang) {
   const f = finder[lang];
-  const q = `${path(lang, 'contact')}`;
+  const names = Object.fromEntries(m365Plans.map((p) => [p.id, p.name]));
+  const prices = Object.fromEntries(m365Plans.map((p) => [p.id, price(p.id)]));
+  const state = { users: 25, need: 'collab', names, prices, why: f.why };
   return `<section class="finder" id="planner"><div class="wrap fin-grid">
 <div class="rv"><p class="eyebrow">${f.eyebrow}</p><h2>${f.title}</h2><p class="fin-lead">${f.lead}</p></div>
-<div class="fin-card rv" x-data='{users:25,need:"office",plans:${JSON.stringify(f.plans)},why:${JSON.stringify(f.why)},get href(){return "${q}?plan="+encodeURIComponent(this.plans[this.need])+"&users="+this.users}}'>
+<div class="fin-card rv" x-data='${JSON.stringify(state).replace(/'/g, '&#39;').slice(0, -1)},
+get plan(){return this.need==="mail"?"exchange":this.users>300?"e1":"basic"},
+get total(){const p=this.prices[this.plan];return p?Math.round(p*this.users).toLocaleString("${loc(lang)}"):null},
+get href(){return "${path(lang, 'contact')}?plan="+encodeURIComponent(this.names[this.plan])+"&users="+this.users}}'>
 <label class="fin-l">${f.users} <output x-text="users"></output></label>
-<input type="range" min="1" max="300" x-model.number="users" :style="'--p:'+((users-1)/299*100)+'%'" aria-label="${f.users}">
+<input type="range" min="1" max="500" x-model.number="users" :style="'--p:'+((users-1)/499*100)+'%'" aria-label="${f.users}">
 <p class="fin-l">${f.need}</p>
 <div class="opts">${f.needs.map(([k, l]) => `<button type="button" :class="{on: need==='${k}'}" @click="need='${k}'">${l}</button>`).join('')}</div>
-<div class="fin-out"><span>${f.result}</span><strong x-text="'Microsoft 365 ' + plans[need]"></strong><p x-text="why[need]"></p></div>
+<div class="fin-out"><span>${f.result}</span><strong x-text="names[plan]"></strong><p x-text="why[plan]"></p>
+<p class="est" x-show="total" x-cloak>${f.estimate} <b x-text="total"></b> ${f.perMonth}</p></div>
 <a class="btn" :href="href">${f.cta} ${icon('arrow', 18)}</a>
 </div></div></section>`;
 }
@@ -145,7 +172,7 @@ function renderForm(lang, u) {
 </div>
 <script>
 function contactForm(){const q=new URLSearchParams(location.search),plan=q.get('plan'),n=q.get('users');
-return{d:{name:'',company:'',email:'',phone:'',interest:${JSON.stringify(f.options[0])},message:plan?('Microsoft 365 '+plan.slice(0,40)+' - '+(parseInt(n)||'')+' ${lang === 'fr' ? 'utilisateurs' : 'users'}\\n'):'',website:'',lang:${JSON.stringify(lang)},t:Date.now()},state:'idle',
+return{d:{name:'',company:'',email:'',phone:'',interest:${JSON.stringify(f.options[0])},message:plan?(plan.slice(0,60)+(parseInt(n)?' - '+parseInt(n)+' ${lang === 'fr' ? 'utilisateurs' : 'users'}':'')+'\\n'):'',website:'',lang:${JSON.stringify(lang)},t:Date.now()},state:'idle',
 async send(){if(!this.d.name||!this.d.email||!this.d.message){this.state='err';return}this.state='sending';
 try{const r=await fetch('/contact.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(this.d)});this.state=r.ok?'ok':'err'}catch(e){this.state='err'}}}}
 </script></section>`;
