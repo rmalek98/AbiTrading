@@ -10,7 +10,7 @@ export const finder = {
     users: 'Nombre d’utilisateurs', need: 'Votre besoin',
     needs: [['mail', 'Email professionnel uniquement'], ['collab', 'Email + Teams + Office en ligne']],
     why: { exchange: 'Messagerie pro 50 Go sur votre domaine, Outlook web et mobile.', basic: 'Email, Teams, Office en ligne et 1 To OneDrive par utilisateur.', e1: 'Au-delà de 300 utilisateurs : Office en ligne, email et OneDrive sans limite d’utilisateurs.' },
-    result: 'Notre recommandation', cta: 'Obtenir mon devis', estimate: 'Estimation :', perMonth: 'DH HT / mois'
+    result: 'Notre recommandation', cta: 'Obtenir mon devis'
   },
   en: {
     eyebrow: 'Planner',
@@ -19,7 +19,7 @@ export const finder = {
     users: 'Number of users', need: 'Your need',
     needs: [['mail', 'Business email only'], ['collab', 'Email + Teams + Office Online']],
     why: { exchange: '50 GB business email on your domain, Outlook web and mobile.', basic: 'Email, Teams, Office Online and 1 TB OneDrive per user.', e1: 'Beyond 300 users: Office Online, email and OneDrive with no user cap.' },
-    result: 'Our recommendation', cta: 'Get my quote', estimate: 'Estimate:', perMonth: 'MAD excl. VAT / month'
+    result: 'Our recommendation', cta: 'Get my quote'
   }
 };
 

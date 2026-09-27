@@ -6,7 +6,6 @@ Static bilingual site (FR at `/`, EN at `/en/`). No runtime dependencies: plain 
 - Copy and SEO titles/descriptions: `src/content.mjs`
 - Phone, WhatsApp, email, address, cities, social links: `site.config.json` (empty values are hidden automatically)
 - Microsoft 365 cloud plans (names, features): `src/m365.mjs`
-- Microsoft 365 prices: `m365Prices` in `site.config.json`, in DH HT per user per month. Leave `null` to show "Sur devis".
 - Styles: `assets/css/style.css`
 
 ## Build and preview

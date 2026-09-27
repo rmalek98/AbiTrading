@@ -107,18 +107,13 @@ function renderBlock(b, lang, u) {
   return '';
 }
 
-const price = (id) => (cfg.m365Prices || {})[id] || null;
-const loc = (lang) => (lang === 'fr' ? 'fr-FR' : 'en-US');
-const fmt = (n, lang) => Number(n).toLocaleString(loc(lang), { maximumFractionDigits: 2 });
-
 function renderPricing(lang) {
   const m = m365Ui[lang];
   return `<section class="section" id="offres"><div class="wrap"><div class="head-s rv"><p class="eyebrow">${m.cloud}</p><h2>${m.title}</h2></div>
 <div class="pricing">${m365Plans.map((p, n) => {
-    const pr = price(p.id);
     return `<article class="price-card rv${p.hot ? ' hot' : ''}" style="--i:${n}">
 <span class="tag">${esc(p.tag[lang])}</span><h3>${esc(p.name)}</h3><p class="best">${esc(p.best[lang])}</p>
-<p class="amount">${pr ? `<strong>${fmt(pr, lang)}</strong><span>${m.perUser}</span>` : `<strong class="quote">${m.onQuote}</strong>`}</p>
+<p class="amount"><strong>${m.onQuote}</strong><span>${m.quoteSub}</span></p>
 <ul>${p.features[lang].map((f) => `<li>${icon('check', 18)}${esc(f)}</li>`).join('')}</ul>
 <a class="btn${p.hot ? '' : ' line'}" href="${path(lang, 'contact')}?plan=${encodeURIComponent(p.name)}">${m.choose} ${icon('arrow', 18)}</a>
 </article>`;
@@ -128,20 +123,17 @@ function renderPricing(lang) {
 function renderFinder(lang) {
   const f = finder[lang];
   const names = Object.fromEntries(m365Plans.map((p) => [p.id, p.name]));
-  const prices = Object.fromEntries(m365Plans.map((p) => [p.id, price(p.id)]));
-  const state = { users: 25, need: 'collab', names, prices, why: f.why };
+  const state = { users: 25, need: 'collab', names, why: f.why };
   return `<section class="finder" id="planner"><div class="wrap fin-grid">
 <div class="rv"><p class="eyebrow">${f.eyebrow}</p><h2>${f.title}</h2><p class="fin-lead">${f.lead}</p></div>
 <div class="fin-card rv" x-data='${JSON.stringify(state).replace(/'/g, '&#39;').slice(0, -1)},
 get plan(){return this.need==="mail"?"exchange":this.users>300?"e1":"basic"},
-get total(){const p=this.prices[this.plan];return p?Math.round(p*this.users).toLocaleString("${loc(lang)}"):null},
 get href(){return "${path(lang, 'contact')}?plan="+encodeURIComponent(this.names[this.plan])+"&users="+this.users}}'>
 <label class="fin-l">${f.users} <output x-text="users"></output></label>
 <input type="range" min="1" max="500" x-model.number="users" :style="'--p:'+((users-1)/499*100)+'%'" aria-label="${f.users}">
 <p class="fin-l">${f.need}</p>
 <div class="opts">${f.needs.map(([k, l]) => `<button type="button" :class="{on: need==='${k}'}" @click="need='${k}'">${l}</button>`).join('')}</div>
-<div class="fin-out"><span>${f.result}</span><strong x-text="names[plan]"></strong><p x-text="why[plan]"></p>
-<p class="est" x-show="total" x-cloak>${f.estimate} <b x-text="total"></b> ${f.perMonth}</p></div>
+<div class="fin-out"><span>${f.result}</span><strong x-text="names[plan]"></strong><p x-text="why[plan]"></p></div>
 <a class="btn" :href="href">${f.cta} ${icon('arrow', 18)}</a>
 </div></div></section>`;
 }
@@ -209,7 +201,7 @@ function layout(lang, key) {
     { '@type': 'ListItem', position: 1, name: cfg.name, item: abs(lang, 'home') },
     { '@type': 'ListItem', position: 2, name: title, item: url }] });
 
-  const navHtml = nav.map((k) => `<a href="${path(lang, k)}"${k === key ? ' aria-current="page"' : ''}>${esc(navLabel(k, lang))}</a>`).join('');
+  const navHtml = nav.map((k, n) => `<a href="${path(lang, k)}" style="--i:${n}" @click="open=false"${k === key ? ' aria-current="page"' : ''}><span>${esc(navLabel(k, lang))}</span>${icon('arrow', 20)}</a>`).join('');
   const waHref = cfg.whatsapp ? `https://wa.me/${digits(cfg.whatsapp)}` : '';
   const waLink = waHref ? `<a class="wa" href="${waHref}" aria-label="${u.whatsapp}" rel="noopener">${WA}</a>` : '';
 
@@ -257,14 +249,15 @@ ${markSvg('hero-bg')}</div></section>`;
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site" x-data="{open:false}" @keydown.escape="open=false">
+<header class="site" x-data="{open:false}" :class="{open}" x-effect="document.documentElement.classList.toggle('menu-open', open)" @keydown.escape="open=false" @resize.window="if (innerWidth > 1080) open = false">
 <div class="wrap bar">
 <a class="brand" href="${path(lang, 'home')}"><img src="/assets/img/logo-abitrading.png" alt="${cfg.name}" width="168" height="52"></a>
-<nav class="nav" :class="{open}" aria-label="Main">${navHtml}</nav>
+<nav class="nav" id="menu" :class="{open}" aria-label="Main">${navHtml}
+<div class="nav-foot" style="--i:${nav.length}"><a class="btn" href="${path(lang, 'contact')}" @click="open=false">${u.quote} ${icon('arrow', 18)}</a>${waHref ? `<a class="btn line" href="${waHref}" rel="noopener">WhatsApp</a>` : ''}<a class="nav-lang" href="${path(other, key)}" hreflang="${other}" lang="${other}">${ui[other].langName}</a></div></nav>
 <div class="actions">
 <a class="lang" href="${path(other, key)}" hreflang="${other}" lang="${other}">${other.toUpperCase()}</a>
 <a class="btn sm" href="${path(lang, 'contact')}">${u.quote}</a>
-<button class="burger" type="button" @click="open=!open" :aria-expanded="open" aria-label="${u.menu}"><span></span><span></span><span></span></button>
+<button class="burger" type="button" @click="open=!open" :aria-expanded="open" aria-controls="menu" aria-label="${u.menu}"><span></span><span></span><span></span></button>
 </div></div></header>
 <main id="main">
 ${hero}

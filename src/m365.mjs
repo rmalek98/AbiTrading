@@ -1,5 +1,4 @@
-// Cloud-only Microsoft offers (no desktop apps). Prices live in site.config.json -> m365Prices
-// (DH HT per user per month); an empty price shows "Sur devis" / "Quote on request".
+// Cloud-only Microsoft offers (no desktop apps). No public prices: every plan leads to a quote request.
 export const m365Plans = [
   {
     id: 'exchange',
@@ -34,10 +33,7 @@ export const m365Plans = [
   }
 ];
 
-// Which plan the home-page finder recommends.
-export const pickPlan = (need, users) => (need === 'mail' ? 'exchange' : users > 300 ? 'e1' : 'basic');
-
 export const m365Ui = {
-  fr: { cloud: '100 % cloud · aucune installation', perUser: 'DH HT / utilisateur / mois', onQuote: 'Sur devis', choose: 'Choisir cette offre', title: 'Nos offres Microsoft 365 cloud', note: 'Tarifs hors taxes, facturés en dirhams. Engagement et remises volume confirmés dans votre devis.' },
-  en: { cloud: '100% cloud · nothing to install', perUser: 'MAD excl. VAT / user / month', onQuote: 'Quote on request', choose: 'Choose this plan', title: 'Our Microsoft 365 cloud plans', note: 'Prices exclude VAT and are billed in Moroccan dirhams. Commitment and volume discounts are confirmed in your quote.' }
+  fr: { cloud: '100 % cloud · aucune installation', onQuote: 'Sur devis', quoteSub: 'Tarif adapté à votre nombre d’utilisateurs', choose: 'Demander un devis', title: 'Nos offres Microsoft 365 cloud', note: 'Nos tarifs dépendent du nombre d’utilisateurs et de la durée d’engagement. Contactez-nous : nous répondons sous 24 h ouvrées avec une offre chiffrée en dirhams.' },
+  en: { cloud: '100% cloud · nothing to install', onQuote: 'Quote on request', quoteSub: 'Priced for your number of users', choose: 'Request a quote', title: 'Our Microsoft 365 cloud plans', note: 'Pricing depends on your number of users and commitment term. Contact us and we will reply within 1 business day with a quote in Moroccan dirhams.' }
 };
